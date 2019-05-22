@@ -1,3 +1,8 @@
+resource "kubernetes_namespace" "default" {
+  metadata {
+    name = "${local.namespace}"
+    }
+}
 locals {
   original_tags = "${join(var.delimiter, compact(concat(list(var.namespace, var.stage, var.name), var.attributes)))}"
 }
@@ -30,5 +35,5 @@ locals {
           "Stage", "${local.stage}"
         ), var.tags
       )
-    }"
+ }"
 }
